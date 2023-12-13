@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { addResearch } from "../features/filmsDB";
 import { useDispatch } from "react-redux";
 import { changePage } from "../features/filmsDB";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [research, Setresearch] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleSearch() {
     if (!showSearchBar) {
@@ -23,24 +25,33 @@ export default function Navbar() {
         <p className="text-red-500 text-3xl font-semibold">COPYFLIX</p>
         <ul className="flex text-white ml-20">
           <li className="ml-10 text-lg">
-            <a className="focus:font-semibold" href="/Copyflix/home">
+            <button
+              className="focus:font-semibold"
+              onClick={() => navigate("/Copyflix/home")}
+            >
               Accueil
-            </a>
+            </button>
           </li>
           <li className="ml-10 text-lg">
-            <a className="focus:font-semibold" href="/Copyflix/serie">
+            <button
+              className="focus:font-semibold"
+              onClick={() => navigate("/Copyflix/serie")}
+            >
               Serie
-            </a>
+            </button>
           </li>
           <li className="ml-10 text-lg">
-            <a className="focus:font-semibold" href="#">
+            <button className="focus:font-semibold" href="#">
               Films
-            </a>
+            </button>
           </li>
           <li className="ml-10 text-lg">
-            <a className="focus:font-semibold" href="/Copyflix/liste">
+            <button
+              className="focus:font-semibold"
+              onClick={() => navigate("/Copyflix/liste")}
+            >
               Ma liste
-            </a>
+            </button>
           </li>
         </ul>
       </div>
