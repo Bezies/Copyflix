@@ -12,6 +12,8 @@ export default function Films() {
         <SelectGenre />
       </div>
 
+      <div className="mt-20 px-20 bg-black flex flex-col items-start"></div>
+
       <div className="mt-20 px-20 bg-black flex flex-col items-start">
         <PopularFilms />
       </div>
