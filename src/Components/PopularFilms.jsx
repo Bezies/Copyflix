@@ -11,6 +11,7 @@ export default function PopularFilms() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [ModalData, SetModalData] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -37,6 +38,7 @@ export default function PopularFilms() {
               className="p-3 rounded cursor-pointer"
             >
               <img
+                onClick={() => SetModalData(movie)}
                 className="h-72 w-48 object-cover object-center"
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt={`poster of ${movie.original_title}`}
@@ -45,7 +47,7 @@ export default function PopularFilms() {
                 createPortal(
                   <MoreInfos
                     closeModal={() => setShowModal(!showModal)}
-                    movie={movie}
+                    movie={ModalData}
                   />,
                   document.body
                 )}

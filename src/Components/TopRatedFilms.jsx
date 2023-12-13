@@ -11,13 +11,13 @@ export default function TopRatedFilms() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [ModalData, SetModalData] = useState([]);
 
   useEffect(() => {
     setLoading(true);
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=a4c079c7c15f0025ee0ea973937273b4
-       `
+        `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=a4c079c7c15f0025ee0ea973937273b4`
       )
       .then((res) => {
         setLoading(false);
@@ -37,6 +37,7 @@ export default function TopRatedFilms() {
               className="p-3 rounded cursor-pointer"
             >
               <img
+                onClick={() => SetModalData(movie)}
                 className="h-72 w-48 object-cover object-center"
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt={`affiche ${movie.original_title}`}
@@ -44,7 +45,7 @@ export default function TopRatedFilms() {
               {showModal &&
                 createPortal(
                   <MoreInfos
-                    movie={movie}
+                    movie={ModalData}
                     closeModal={() => setShowModal(!showModal)}
                   />,
                   document.body

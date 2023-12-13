@@ -1,4 +1,3 @@
-import { Input } from "postcss";
 import React, { useState } from "react";
 import { addResearch } from "../features/filmsDB";
 import { useDispatch } from "react-redux";
@@ -41,7 +40,10 @@ export default function Navbar() {
             </button>
           </li>
           <li className="ml-10 text-lg">
-            <button className="focus:font-semibold" href="#">
+            <button
+              className="focus:font-semibold"
+              onClick={() => navigate("/Copyflix/films")}
+            >
               Films
             </button>
           </li>
