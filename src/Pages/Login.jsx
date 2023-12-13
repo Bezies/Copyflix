@@ -75,12 +75,12 @@ export default function Login() {
 
         <p className="pb-10 text-slate-400 mt-5 text-center">
           Première visite sur Copyflix?{" "}
-          <a
+          <button
             className="text-white font-medium hover:underline"
-            href="/Copyflix/inscription"
+            onClick={() => navigate("/Copyflix/inscription")}
           >
             Inscrivez-vous
-          </a>
+          </button>
         </p>
       </div>
     </div>
