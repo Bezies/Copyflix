@@ -12,12 +12,12 @@ export default function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/inscription" element={<Inscription />} />
-        <Route path="/profils" element={<Profils />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/liste" element={<Liste />} />
-        <Route path="/serie" element={<Serie />} />
+        <Route path="Copyflix/" element={<Login />} />
+        <Route path="Copyflix/inscription" element={<Inscription />} />
+        <Route path="Copyflix/profils" element={<Profils />} />
+        <Route path="Copyflix/home" element={<HomePage />} />
+        <Route path="Copyflix/liste" element={<Liste />} />
+        <Route path="Copyflix/serie" element={<Serie />} />
         <Route path="/:moviID" element={<Movie />} />
       </Routes>
     </div>

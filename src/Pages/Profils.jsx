@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { createPortal } from "react-dom";
@@ -11,7 +10,7 @@ export default function Profils() {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/home");
+    navigate("/Copyflix/home");
   }
 
   return (

@@ -23,12 +23,12 @@ export default function Navbar() {
         <p className="text-red-500 text-3xl font-semibold">COPYFLIX</p>
         <ul className="flex text-white ml-20">
           <li className="ml-10 text-lg">
-            <a className="focus:font-semibold" href="/home">
+            <a className="focus:font-semibold" href="/Copyflix/home">
               Accueil
             </a>
           </li>
           <li className="ml-10 text-lg">
-            <a className="focus:font-semibold" href="/serie">
+            <a className="focus:font-semibold" href="/Copyflix/serie">
               Serie
             </a>
           </li>
@@ -38,7 +38,7 @@ export default function Navbar() {
             </a>
           </li>
           <li className="ml-10 text-lg">
-            <a className="focus:font-semibold" href="/liste">
+            <a className="focus:font-semibold" href="/Copyflix/liste">
               Ma liste
             </a>
           </li>

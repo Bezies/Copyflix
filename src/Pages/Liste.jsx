@@ -13,7 +13,7 @@ export default function Liste() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/MyList")
+      .get("https://copyflix-json-server.onrender.com/MyList")
       .then((res) => setMyList(res.data));
   }, [MyList]);
 
@@ -27,9 +27,9 @@ export default function Liste() {
             {edit ? (
               <button
                 onClick={() => setEdit(!edit)}
-                className="flex text-white"
+                className="flex text-white items-center"
               >
-                <span className="bg-green-500 flex items-center justify-center px-2 mr-3 rounded">
+                <span className="bg-green-500 flex items-center justify-center px-2 py-2 mr-3 rounded">
                   <img src="check.svg" alt="" />
                 </span>
                 Valider ma liste
@@ -72,7 +72,7 @@ export default function Liste() {
               ))}
           </div>
         </div>
-        <div className="mt-10 ">
+        {/* <div className="mt-10 ">
           <h1 className="text-white pl-3 text-3xl">Mes series favorites</h1>
           <div className="flex mt-5">
             {MyList.length === 0 && (
@@ -90,7 +90,7 @@ export default function Liste() {
                 </div>
               ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

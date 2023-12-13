@@ -20,12 +20,12 @@ export default function Login() {
   function onSubmit(data) {
     axios
       .get(
-        `http://localhost:8000/users?mail=${data.email}&password=${data.password}`
+        `https://copyflix-json-server.onrender.com/users?mail=${data.email}&password=${data.password}`
       )
       .then((res) => {
         if (res.data.length > 0) {
           toast.success("Connexion réussie");
-          navigate("/profils");
+          navigate("/Copyflix/profils");
           dispatch(addActiveUser(res.data[0].prenom));
         } else {
           toast.error("Identifiant ou mot de passe invalide");

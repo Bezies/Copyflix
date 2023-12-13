@@ -21,16 +21,22 @@ export default function Inscription() {
     if (data.password !== data.passwordConfirm) {
       toast.error("les mots de passe ne correspondent pas");
     } else {
-      axios.get(`http://localhost:8000/users?mail=${data.mail}`).then((res) => {
-        if (res.data.length > 0) {
-          toast.error("Un compte existe deja avec cette adresse mail");
-        } else {
-          axios.post("http://localhost:8000/users", data).then((res) => {
-            toast.success("Inscription confirmée");
-            navigate("/");
-          });
-        }
-      });
+      axios
+        .get(
+          `https://copyflix-json-server.onrender.com/users?mail=${data.mail}`
+        )
+        .then((res) => {
+          if (res.data.length > 0) {
+            toast.error("Un compte existe deja avec cette adresse mail");
+          } else {
+            axios
+              .post("https://copyflix-json-server.onrender.com/users", data)
+              .then((res) => {
+                toast.success("Inscription confirmée");
+                navigate("Copyflix/");
+              });
+          }
+        });
     }
   }
 

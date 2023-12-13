@@ -22,7 +22,6 @@ export const profils = createSlice({
       state.accounts[0].name = action.payload;
     },
     addProfils: (state, action) => {
-      console.log(action.payload);
       state.accounts.push({
         name: action.payload.name,
         image: action.payload.image,

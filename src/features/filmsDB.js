@@ -33,13 +33,19 @@ export const filmsDB = createSlice({
       console.log(action.payload);
       if (
         axios
-          .get(`http://localhost:8000/MyList?id=${action.payload.id}`)
+          .get(
+            `https://copyflix-json-server.onrender.com/MyList?id=${action.payload.id}`
+          )
           .then((res) => {
             if (res.data.length > 0) {
-              axios.delete(`http://localhost:8000/MyList/${action.payload.id}`);
+              axios.delete(
+                `https://copyflix-json-server.onrender.com/MyList/${action.payload.id}`
+              );
             } else {
-              axios.post("http://localhost:8000/MyList", action.payload);
-              console.log("absent");
+              axios.post(
+                "https://copyflix-json-server.onrender.com/MyList",
+                action.payload
+              );
             }
           })
       );

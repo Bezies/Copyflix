@@ -17,6 +17,8 @@ export default function MoreInfos({ movie, closeModal }) {
     navigate(`/${el.id}`);
   }
 
+  console.log(recommendations);
+
   return (
     <div
       onClick={(e) => e.stopPropagation()}
