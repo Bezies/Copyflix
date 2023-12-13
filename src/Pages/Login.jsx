@@ -77,7 +77,7 @@ export default function Login() {
           Première visite sur Copyflix?{" "}
           <a
             className="text-white font-medium hover:underline"
-            href="Copyflix/inscription"
+            href="/Copyflix/inscription"
           >
             Inscrivez-vous
           </a>
