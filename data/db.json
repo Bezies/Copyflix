@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "nom": "bessiere",
+      "prenom": "quentin",
+      "mail": "test@test.fr",
+      "password": "azertyuio",
+      "passwordConfirm": "azertyuio",
+      "id": 1
+    }
+  ],
+  "MyList": []
+}
