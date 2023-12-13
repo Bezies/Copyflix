@@ -34,7 +34,7 @@ export default function Login() {
   }
 
   return (
-    <div className="h-screen bg-[url('home/background.webp')] bg-cover flex items-center justify-center">
+    <div className="h-screen bg-[url('/home/background.webp')] bg-cover flex items-center justify-center">
       <h1 className="fixed top-10 left-10 uppercase font-bold text-red-600 text-6xl">
         COPYFLIX
       </h1>
@@ -77,7 +77,7 @@ export default function Login() {
           Première visite sur Copyflix?{" "}
           <a
             className="text-white font-medium hover:underline"
-            href="/inscription"
+            href="Copyflix/inscription"
           >
             Inscrivez-vous
           </a>
