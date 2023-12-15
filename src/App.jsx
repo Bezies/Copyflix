@@ -6,7 +6,6 @@ import Profils from "./Pages/Profils";
 import HomePage from "./Pages/HomePage";
 import Liste from "./Pages/Liste";
 import Serie from "./Pages/Serie";
-import Movie from "./Pages/Movie";
 import Films from "./Pages/Films";
 
 export default function App() {
@@ -19,7 +18,6 @@ export default function App() {
         <Route path="Copyflix/home" element={<HomePage />} />
         <Route path="Copyflix/liste" element={<Liste />} />
         <Route path="Copyflix/serie" element={<Serie />} />
-        <Route path="/:moviID" element={<Movie />} />
         <Route path="Copyflix/films" element={<Films />} />
       </Routes>
     </div>

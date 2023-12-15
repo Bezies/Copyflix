@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -11,6 +11,21 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // Show password on click
+  const [showPassword, setShowPassword] = useState(false);
+  const PasswordRef = useRef();
+
+  function handleShowPassword() {
+    if (!showPassword) {
+      setShowPassword(!showPassword);
+      PasswordRef.current.type = "text";
+    } else {
+      setShowPassword(!showPassword);
+      PasswordRef.current.type = "password";
+    }
+  }
+
+  // SUBMIT FORM
   const {
     handleSubmit,
     register,
@@ -33,6 +48,8 @@ export default function Login() {
       });
   }
 
+  console.log(PasswordRef);
+
   return (
     <div className="h-screen bg-[url('/home/background.webp')] bg-cover flex items-center justify-center">
       <h1 className="fixed top-10 left-10 uppercase font-bold text-red-600 text-6xl">
@@ -54,15 +71,29 @@ export default function Login() {
               type="text"
             />
           </div>
-          <div className="w-10/12">
+          <div className="w-10/12 relative">
             <input
               {...register("password")}
               className="rounded w-full  bg-gray-700 text-white text-sm py-2 pl-5 mt-5 outline-none "
               placeholder="Mot de passe"
               type="password"
               id="password"
+              ref={PasswordRef}
               autoComplete="none"
             />
+            {showPassword ? (
+              <img
+                onClick={() => handleShowPassword()}
+                className="absolute right-5 top-7 cursor-pointer"
+                src="eye-slash-solid-w.svg"
+              />
+            ) : (
+              <img
+                onClick={() => handleShowPassword()}
+                className="absolute right-5 top-7 cursor-pointer"
+                src="eye-solid-w.svg"
+              />
+            )}
           </div>
 
           <button

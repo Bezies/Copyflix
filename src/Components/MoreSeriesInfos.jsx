@@ -1,38 +1,32 @@
-import React, { useEffect, useState } from "react";
-import AddMyListButton from "./AddMyListButton";
+import React from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import AddMyListButton from "./AddMyListButton";
 
-export default function MoreInfos({ movie, closeModal }) {
+export default function MoreSeriesInfos({ movie, closeModal }) {
   const [selection, setSelection] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
-  const [navigateFilm, setNavigateFilm] = useState("");
+  const [navigateSerie, setNavigateSerie] = useState("");
   const [credit, setCredits] = useState([]);
 
   // Affichage des données des films à partir de more infos ou de la naviagtion par recommandation
   useEffect(() => {
-    if (navigateFilm === "") {
-      // setSelection(movie);
+    if (navigateSerie === "") {
       axios(
-        `https://api.themoviedb.org/3/movie/${movie.id}?language=en-US&api_key=a4c079c7c15f0025ee0ea973937273b4`
+        `https://api.themoviedb.org/3/tv/${movie.id}?language=en-US&api_key=a4c079c7c15f0025ee0ea973937273b4`
       ).then((res) => setSelection(res.data));
       axios(
-        `https://api.themoviedb.org/3/movie/${movie.id}/recommendations?language=en-US&page=1&api_key=a4c079c7c15f0025ee0ea973937273b4`
+        `https://api.themoviedb.org/3/tv/${movie.id}/recommendations?language=en-US&page=1&api_key=a4c079c7c15f0025ee0ea973937273b4`
       ).then((res) => setRecommendations(res.data.results));
-      axios(
-        `https://api.themoviedb.org/3/movie/${movie.id}/credits?language=en-US&api_key=a4c079c7c15f0025ee0ea973937273b4`
-      ).then((res) => setCredits(res.data.cast));
     } else {
       axios(
-        `https://api.themoviedb.org/3/movie/${navigateFilm}?language=en-US&api_key=a4c079c7c15f0025ee0ea973937273b4`
+        `https://api.themoviedb.org/3/tv/${navigateSerie}?language=en-US&api_key=a4c079c7c15f0025ee0ea973937273b4`
       ).then((res) => setSelection(res.data));
       axios(
-        `https://api.themoviedb.org/3/movie/${navigateFilm}/recommendations?language=en-US&page=1&api_key=a4c079c7c15f0025ee0ea973937273b4`
+        `https://api.themoviedb.org/3/tv/${navigateSerie}/recommendations?language=en-US&page=1&api_key=a4c079c7c15f0025ee0ea973937273b4`
       ).then((res) => setRecommendations(res.data.results));
-      axios(
-        `https://api.themoviedb.org/3/movie/${navigateFilm}/credits?language=en-US&api_key=a4c079c7c15f0025ee0ea973937273b4`
-      ).then((res) => setCredits(res.data.cast));
     }
-  }, [navigateFilm]);
+  }, [navigateSerie]);
 
   console.log(selection);
 
@@ -43,20 +37,22 @@ export default function MoreInfos({ movie, closeModal }) {
     >
       <div className="text-white w-1/2">
         <h1 className=" text-5xl uppercase mt-5 font-bold">
-          {selection.original_title}
+          {selection.original_name}
         </h1>
         <div className="mt-5">
           <span className="font-bold text-green-500">
             Note: {selection.vote_average} / 10
           </span>
-          <span className="ml-5 font-thin">{selection.release_date}</span>
+          <p className="font-thin text-white">
+            Nombre de saisons:
+            <span className="font-semibold">
+              {" "}
+              {selection.number_of_seasons}
+            </span>
+          </p>
         </div>
         <p className="pr-20 mt-5 font-thin">{selection.overview}</p>
-        <p className="mt-3 font-semibold">
-          <span className="font-thin text-slate-300">Starring: </span>
-          {credit && credit.slice(0, 3).map((actor) => `${actor.name}, `)}
-        </p>
-        <p className="font-semibold">
+        <p className="font-semibold mt-5">
           <span className="font-thin text-slate-300">Genre: </span>
           {selection.genres && selection.genres.map((el) => `${el.name}, `)}
         </p>
@@ -71,7 +67,7 @@ export default function MoreInfos({ movie, closeModal }) {
                 .map((el) => (
                   <img
                     key={el.id}
-                    onClick={() => setNavigateFilm(el.id)}
+                    onClick={() => setNavigateSerie(el.id)}
                     className="rounded h-32 w-20 mr-4 mt-3 cursor-pointer"
                     src={
                       el.poster_path

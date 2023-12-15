@@ -1,26 +1,34 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { intRange } from "aimless.js";
 import { useSelector } from "react-redux";
 import AddMyListButton from "./AddMyListButton";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import MoreInfos from "./MoreInfos";
+import { easeOut, motion } from "framer-motion";
 
 export default function RandomFilmsHomePage() {
-  useEffect(() => {
-    return setRandom(intRange(0, filmsDB.popular.length));
-  }, []);
-
   const filmsDB = useSelector((state) => state.filmsDB);
-  const [random, setRandom] = useState("");
+  const [random, setRandom] = useState(intRange(0, filmsDB.popular.length));
   const randomFilm = filmsDB.popular[random];
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRandom((random) => intRange(0, filmsDB.popular.length));
+    }, 10000);
+  }, []);
 
   return (
     <>
       {filmsDB.popular && randomFilm && (
-        <div className="px-20 bg-black flex items-start w-full">
-          <div className="text-white w-1/2">
+        <div className={"px-20 bg-black flex items-start w-full"}>
+          <motion.div
+            initial={{ x: -200, opacity: 0 }}
+            animate={{ x: 40, opacity: 1 }}
+            transition={{ duration: 3, delay: 0.5 }}
+            className="text-white w-1/2"
+          >
             <p className="mt-10 text-2xl font-thin">
               <span className="font-bold">COPYFLIX</span> present
             </p>
@@ -33,6 +41,8 @@ export default function RandomFilmsHomePage() {
               </span>
               <span className="ml-5 font-thin">{randomFilm.release_date}</span>
             </div>
+            <p className="pr-20 mt-5 font-thin">{randomFilm.overview}</p>
+
             <div className="flex items-center">
               <AddMyListButton film={randomFilm} />
               <button
@@ -45,15 +55,19 @@ export default function RandomFilmsHomePage() {
                 Plus d'infos
               </button>
             </div>
-            <p className="pr-20 mt-5 font-thin">{randomFilm.overview}</p>
-          </div>
-          <div className="w-1/2">
+          </motion.div>
+          <motion.div
+            initial={{ x: +200, opacity: 0 }}
+            animate={{ x: 40, opacity: 1 }}
+            transition={{ duration: 3, delay: 0.5 }}
+            className="w-1/2"
+          >
             <img
               className=""
               src={`https://image.tmdb.org/t/p/original/${randomFilm.backdrop_path}`}
               alt=""
             />
-          </div>
+          </motion.div>
           {showModal &&
             createPortal(
               <MoreInfos
