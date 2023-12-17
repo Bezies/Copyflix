@@ -33,7 +33,7 @@ export default function Inscription() {
               .post("https://copyflix-json-server.onrender.com/users", data)
               .then((res) => {
                 toast.success("Inscription confirmée");
-                navigate("Copyflix/");
+                navigate("/Copyflix/");
               });
           }
         });

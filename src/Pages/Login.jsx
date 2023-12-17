@@ -15,15 +15,15 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const PasswordRef = useRef();
 
-  function handleShowPassword() {
-    if (!showPassword) {
-      setShowPassword(!showPassword);
-      PasswordRef.current.type = "text";
-    } else {
-      setShowPassword(!showPassword);
-      PasswordRef.current.type = "password";
-    }
-  }
+  // function handleShowPassword() {
+  //   if (!showPassword) {
+  //     setShowPassword(!showPassword);
+  //     PasswordRef.current.type = "text";
+  //   } else {
+  //     setShowPassword(!showPassword);
+  //     PasswordRef.current.type = "password";
+  //   }
+  // }
 
   // SUBMIT FORM
   const {
@@ -33,6 +33,7 @@ export default function Login() {
   } = useForm();
 
   function onSubmit(data) {
+    console.log(data.password);
     axios
       .get(
         `https://copyflix-json-server.onrender.com/users?mail=${data.email}&password=${data.password}`
@@ -78,10 +79,10 @@ export default function Login() {
               placeholder="Mot de passe"
               type="password"
               id="password"
-              ref={PasswordRef}
+              // ref={PasswordRef}
               autoComplete="none"
             />
-            {showPassword ? (
+            {/* {showPassword ? (
               <img
                 onClick={() => handleShowPassword()}
                 className="absolute right-5 top-7 cursor-pointer"
@@ -93,7 +94,7 @@ export default function Login() {
                 className="absolute right-5 top-7 cursor-pointer"
                 src="eye-solid-w.svg"
               />
-            )}
+            )} */}
           </div>
 
           <button
