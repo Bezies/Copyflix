@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import AddMyListButton from "./AddMyListButton";
 import axios from "axios";
 
-export default function MoreInfos({ movie, closeModal }) {
+export default function MoreInfos({ movie, closeModal, fav }) {
   const [selection, setSelection] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
   const [navigateFilm, setNavigateFilm] = useState("");
   const [credit, setCredits] = useState([]);
+  const [alreadyFav, setAlreadyFav] = useState(false);
 
   // Affichage des données des films à partir de more infos ou de la naviagtion par recommandation
   useEffect(() => {
@@ -65,6 +66,7 @@ export default function MoreInfos({ movie, closeModal }) {
           <div className="flex flex-wrap">
             {recommendations &&
               recommendations
+                .filter((el) => el.poster_path !== null)
                 .slice(0, 5)
                 .map((el) => (
                   <img

@@ -28,8 +28,6 @@ export default function MoreSeriesInfos({ movie, closeModal }) {
     }
   }, [navigateSerie]);
 
-  console.log(selection);
-
   return (
     <div
       onClick={(e) => e.stopPropagation()}

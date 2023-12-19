@@ -33,28 +33,30 @@ export default function PopularFilms() {
       </h2>
       <div className="flex flex-wrap grow justify-start">
         {filmsDB.popular &&
-          filmsDB.popular.map((movie) => (
-            <div
-              onClick={() => setShowModal(!showModal)}
-              key={movie.id}
-              className="p-3 rounded cursor-pointer"
-            >
-              <img
-                onClick={() => SetModalData(movie)}
-                className="h-24 md:h-72 w-16 md:w-48 object-cover object-center"
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                alt={`poster of ${movie.original_title}`}
-              />
-              {showModal &&
-                createPortal(
-                  <MoreInfos
-                    closeModal={() => setShowModal(!showModal)}
-                    movie={ModalData}
-                  />,
-                  document.body
-                )}
-            </div>
-          ))}
+          filmsDB.popular
+            .filter((el) => el.poster_path !== null)
+            .map((movie) => (
+              <div
+                onClick={() => setShowModal(!showModal)}
+                key={movie.id}
+                className="p-3 rounded cursor-pointer"
+              >
+                <img
+                  onClick={() => SetModalData(movie)}
+                  className="h-24 md:h-72 w-16 md:w-48 object-cover object-center"
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt={`poster of ${movie.original_title}`}
+                />
+                {showModal &&
+                  createPortal(
+                    <MoreInfos
+                      closeModal={() => setShowModal(!showModal)}
+                      movie={ModalData}
+                    />,
+                    document.body
+                  )}
+              </div>
+            ))}
       </div>
     </>
   );

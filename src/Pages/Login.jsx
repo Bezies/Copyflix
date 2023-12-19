@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -33,8 +33,15 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
+  //   Si un utilisateur est deja connecté, il ne passe plus par l'étape login
+  useEffect(() => {
+    if (localStorage.getItem("utilisateur")) {
+      navigate("/Copyflix/profils");
+    }
+  });
+
+  // Connexion réussite / echec
   function onSubmit(data) {
-    console.log(data.password);
     axios
       .get(
         `https://copyflix-json-server.onrender.com/users?mail=${data.email}&password=${data.password}`
@@ -43,14 +50,13 @@ export default function Login() {
         if (res.data.length > 0) {
           toast.success("Connexion réussie");
           navigate("/Copyflix/profils");
+          localStorage.setItem("utilisateur", data.email);
           dispatch(addActiveUser(res.data[0].prenom));
         } else {
           toast.error("Identifiant ou mot de passe invalide");
         }
       });
   }
-
-  console.log(PasswordRef);
 
   return (
     <div className="h-screen bg-[url('/home/background.webp')] bg-cover flex items-center justify-center">

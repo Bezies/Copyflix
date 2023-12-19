@@ -53,7 +53,7 @@ export default function RandomSerieHomePage() {
                 className="flex items-center bg-gray-200/20 text-sm md:text-base px-2 md:px-5 mt-8 md:ml-5 rounded py-2 md:py-4"
               >
                 <span className="block border border-white px-2 py-0 md:py-1 rounded-full mr-3 text-xs md:text-sm">
-                  i
+                  <img src="info-solid.svg" alt="icon info" />
                 </span>
                 Plus d'infos
               </button>

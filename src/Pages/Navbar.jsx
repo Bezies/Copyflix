@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Hamburger from "hamburger-react";
+import LogOutButtons from "./LogOutButtons";
 
 export default function Navbar() {
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -11,6 +12,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
   const Users = useSelector((state) => state.profils);
+  const [logOut, setLogOut] = useState(false);
 
   // STOP SCROLL MENU OPEN
   useEffect(() => {
@@ -101,20 +103,29 @@ export default function Navbar() {
                   </button>
                 </motion.li>
               ))}
+              <li className="md:hidden mt-10">{isOpen && <LogOutButtons />}</li>
             </motion.ul>
           )}
         </AnimatePresence>
       </div>
-      <div className="hidden md:flex items-center">
-        <span className="text-white">{Users.accounts[0].name}</span>
-        <button className="flex items-center">
+      <div className="hidden md:flex items-center relative">
+        <span className="text-white text-lg">{Users.activeUser.name}</span>
+        <button
+          onClick={() => setLogOut(!logOut)}
+          className="flex items-center"
+        >
           {/* <img className="w-3 ml-1" src="chevron-down.svg" alt="" /> */}
           <img
-            className="w-8 rounded ml-2"
-            src={Users.accounts[0].image}
-            alt=""
+            className="w-10 rounded ml-3"
+            src={Users.activeUser.image}
+            alt="user profile image"
           />
         </button>
+        {logOut && (
+          <AnimatePresence>
+            <LogOutButtons />
+          </AnimatePresence>
+        )}
       </div>
     </div>
   );

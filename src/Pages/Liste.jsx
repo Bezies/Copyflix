@@ -3,19 +3,26 @@ import Navbar from "./Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { AddInMyList } from "../features/filmsDB";
+import { createPortal } from "react-dom";
+import MoreInfos from "../Components/MoreInfos";
 
 export default function Liste() {
   const filmsDB = useSelector((state) => state.filmsDB);
   const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
-
   const [MyList, setMyList] = useState([]);
+
+  console.log(MyList);
+
+  // GESTION MODAL
+  const [ModalData, SetModalData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     axios
       .get("https://copyflix-json-server.onrender.com/MyList")
       .then((res) => setMyList(res.data));
-  }, [MyList]);
+  }, []);
 
   return (
     <div className="bg-black">
@@ -41,8 +48,8 @@ export default function Liste() {
                 onClick={() => setEdit(!edit)}
                 className="flex items-center text-white text-xs md:text-base"
               >
-                <img className="w-3 md:w-6 mr-3" src="pen.svg" alt="" /> Editer
-                ma liste
+                <img className="w-3 md:w-6 mr-3" src="pen.svg" alt="" /> Mettre
+                à jour ma liste
               </button>
             )}
           </div>
@@ -56,10 +63,12 @@ export default function Liste() {
             {MyList.length > 0 &&
               MyList.map((fav) => (
                 <div
+                  onClick={() => setShowModal(!showModal)}
                   key={fav.id}
                   className="p-3 rounded cursor-pointer relative"
                 >
                   <img
+                    onClick={() => SetModalData(fav)}
                     className="h-72 w-48 object-cover object-center"
                     src={`https://image.tmdb.org/t/p/original/${fav.poster_path}`}
                     alt=""
@@ -74,6 +83,15 @@ export default function Liste() {
                   )}
                 </div>
               ))}
+            {showModal &&
+              createPortal(
+                <MoreInfos
+                  closeModal={() => setShowModal(!showModal)}
+                  movie={ModalData}
+                  fav={MyList}
+                />,
+                document.body
+              )}
           </div>
         </div>
         {/* <div className="mt-10 ">

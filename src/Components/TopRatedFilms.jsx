@@ -32,28 +32,30 @@ export default function TopRatedFilms() {
       </h2>
       <div className="flex flex-wrap justify-start">
         {filmsDB.topRanked &&
-          filmsDB.topRanked.map((movie) => (
-            <div
-              onClick={() => setShowModal(!showModal)}
-              key={movie.id}
-              className="p-3 rounded cursor-pointer"
-            >
-              <img
-                onClick={() => SetModalData(movie)}
-                className="h-24 md:h-72 w-16 md:w-48 object-cover object-center"
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                alt={`affiche ${movie.original_title}`}
-              />
-              {showModal &&
-                createPortal(
-                  <MoreInfos
-                    movie={ModalData}
-                    closeModal={() => setShowModal(!showModal)}
-                  />,
-                  document.body
-                )}
-            </div>
-          ))}
+          filmsDB.topRanked
+            .filter((el) => el.poster_path !== null)
+            .map((movie) => (
+              <div
+                onClick={() => setShowModal(!showModal)}
+                key={movie.id}
+                className="p-3 rounded cursor-pointer"
+              >
+                <img
+                  onClick={() => SetModalData(movie)}
+                  className="h-24 md:h-72 w-16 md:w-48 object-cover object-center"
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt={`affiche ${movie.original_title}`}
+                />
+                {showModal &&
+                  createPortal(
+                    <MoreInfos
+                      movie={ModalData}
+                      closeModal={() => setShowModal(!showModal)}
+                    />,
+                    document.body
+                  )}
+              </div>
+            ))}
       </div>
     </>
   );

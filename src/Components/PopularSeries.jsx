@@ -36,24 +36,26 @@ export default function PopularSeries() {
       >
         {SerieDB.popularSeries &&
           SerieDB.popularSeries.length > 0 &&
-          SerieDB.popularSeries.map((serie) => (
-            <div key={serie.id} className="p-3 rounded cursor-pointer">
-              <img
-                onClick={() => SetModalData(serie)}
-                className="h-24 md:h-72 w-16 md:w-48 object-cover object-center"
-                src={`https://image.tmdb.org/t/p/original/${serie.poster_path}`}
-                alt=""
-              />
-              {showModal &&
-                createPortal(
-                  <MoreSeriesInfos
-                    closeModal={() => setShowModal(!showModal)}
-                    movie={ModalData}
-                  />,
-                  document.body
-                )}
-            </div>
-          ))}
+          SerieDB.popularSeries
+            .filter((el) => el.poster_path !== null)
+            .map((serie) => (
+              <div key={serie.id} className="p-3 rounded cursor-pointer">
+                <img
+                  onClick={() => SetModalData(serie)}
+                  className="h-24 md:h-72 w-16 md:w-48 object-cover object-center"
+                  src={`https://image.tmdb.org/t/p/original/${serie.poster_path}`}
+                  alt=""
+                />
+                {showModal &&
+                  createPortal(
+                    <MoreSeriesInfos
+                      closeModal={() => setShowModal(!showModal)}
+                      movie={ModalData}
+                    />,
+                    document.body
+                  )}
+              </div>
+            ))}
       </div>
     </>
   );

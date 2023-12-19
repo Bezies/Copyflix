@@ -12,7 +12,6 @@ export default function AddMyListButton({ film }) {
     if (!Fav) {
       dispatch(AddInMyList(film));
     } else {
-      // dispatch(RemoveFavList(film.id));
       dispatch(AddInMyList(film));
     }
   }
