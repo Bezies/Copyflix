@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Logo from "../Components/Logo";
 
 export default function Inscription() {
   const {
@@ -68,10 +69,8 @@ export default function Inscription() {
 
   return (
     <div className="h-screen bg-black flex items-center justify-center">
-      <h1 className="fixed top-10 left-10 uppercase font-bold text-red-600 text-6xl">
-        COPYFLIX
-      </h1>
-      <div className="flex flex-col items-center justify-center w-1/4">
+      <Logo />
+      <div className="flex flex-col items-center justify-center w-10/12 md:w-1/2 lg:w-1/4">
         <h1 className="text-white font-medium text-center text-2xl mb-5">
           Inscription
         </h1>

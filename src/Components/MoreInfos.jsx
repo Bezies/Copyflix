@@ -34,15 +34,13 @@ export default function MoreInfos({ movie, closeModal }) {
     }
   }, [navigateFilm]);
 
-  console.log(selection);
-
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className=" bg-black fixed inset-0 flex items-center pt-10 h-screen w-full px-20"
+      className=" bg-black fixed inset-0 flex flex-col md:flex-row items-center pt-10 min-h-screen md:h-screen w-full px-5 md:px-20"
     >
-      <div className="text-white w-1/2">
-        <h1 className=" text-5xl uppercase mt-5 font-bold">
+      <div className="text-white w-full md:w-1/2">
+        <h1 className="text-2xl md:text-5xl uppercase mt-5 font-bold">
           {selection.original_title}
         </h1>
         <div className="mt-5">
@@ -64,7 +62,7 @@ export default function MoreInfos({ movie, closeModal }) {
           {recommendations.length > 0 && (
             <h2 className="text-white mt-5">Vous aimerez aussi:</h2>
           )}
-          <div className="flex">
+          <div className="flex flex-wrap">
             {recommendations &&
               recommendations
                 .slice(0, 5)
@@ -83,9 +81,11 @@ export default function MoreInfos({ movie, closeModal }) {
                 ))}
           </div>
         </div>
-        <AddMyListButton film={movie} />
+        <div className="mb-5">
+          <AddMyListButton film={movie} />
+        </div>
       </div>
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2 pb-10 md:pb-0">
         <img
           className=""
           src={`https://image.tmdb.org/t/p/original/${selection.backdrop_path}`}
@@ -95,9 +95,11 @@ export default function MoreInfos({ movie, closeModal }) {
 
       <button
         onClick={closeModal}
-        className="absolute top-10 right-20 bg-white text-black rounded-full"
+        className="absolute top-5 md:top-10 right-10 md:right-20 bg-white text-black rounded-full"
       >
-        <span className="px-5 py-3 text-3xl block">X</span>
+        <span className="px-3 md:px-5 py-1 md:py-3 text-xl md:text-3xl block">
+          X
+        </span>
       </button>
     </div>
   );

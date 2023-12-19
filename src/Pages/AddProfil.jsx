@@ -33,15 +33,15 @@ export default function AddProfil({ closeModal, setShowModal, showModal }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black flex items-center justify-center">
+    <div className="fixed inset-0 bg-black flex items-start md:items-center justify-center pt-10 md:pt-0">
       <div className="pl-10">
-        <div className="border-b border-slate-500 pb-10">
-          <h1 className="text-white text-6xl">Ajouter un profil</h1>
-          <p className="text-gray-400 text-lg mt-5  ">
+        <div className="flex flex-col items-center border-b border-slate-500 pb-10">
+          <h1 className="text-white text-2xl md:text-6xl">Ajouter un profil</h1>
+          <p className="text-gray-400 text-base md:text-lg mt-5  ">
             Ajouter un profil pour un nouvel utilisateur
           </p>
         </div>
-        <div className="flex items-center mt-10 border-b border-slate-500 pb-10">
+        <div className="flex flex-col md:flex-row items-center mt-10 border-b border-slate-500 pb-10">
           <img
             className="w-32 mt-5 rounded"
             src={`profils/image-${image}.jpg`}
@@ -49,13 +49,13 @@ export default function AddProfil({ closeModal, setShowModal, showModal }) {
           />
           <input
             onChange={(e) => SetProfilName(e.target.value)}
-            className="bg-gray-400 rounded ml-20 text-white outline-none pl-5 py-2"
+            className="bg-gray-200/40 rounded mt-5 md:mt-0 md:ml-20 text-white outline-none pl-5 py-2"
             type="text"
           />
-          <div className="flex items-center">
+          <div className="flex items-center mt-3 md:mt-0">
             <input
               onChange={(e) => handleCheck(e)}
-              className="ml-10"
+              className="md:ml-10"
               type="checkbox"
               name=""
               id="enfant"
@@ -65,7 +65,7 @@ export default function AddProfil({ closeModal, setShowModal, showModal }) {
             </label>
           </div>
         </div>
-        <div className="mt-10 flex">
+        <div className="mt-10 flex flex-col md:flex-row ">
           <button
             onClick={() => handleSubmit()}
             className="bg-white text-black uppercase px-5 py-2 rounded"
@@ -74,7 +74,7 @@ export default function AddProfil({ closeModal, setShowModal, showModal }) {
           </button>
           <button
             onClick={closeModal}
-            className="text-slate-500 border border-slate-500 px-5 py-2 rounded uppercase ml-10"
+            className="text-slate-500 border border-slate-500 px-5 py-2 rounded uppercase md:ml-10 mt-5 md:mt-0"
           >
             Annuler
           </button>

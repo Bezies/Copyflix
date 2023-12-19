@@ -81,10 +81,8 @@ export default function SelectGenre() {
     visible: { x: 0, opacity: 1 },
   };
 
-  console.log(result);
-
   return (
-    <div className="flex">
+    <div className="flex flex-col items-center md:flex-row">
       <div>
         {!showAdvanced ? (
           <button
@@ -105,69 +103,71 @@ export default function SelectGenre() {
             <img className="w-5" src="arrow-left-solid-w.svg" alt="" />
           </motion.button>
         )}
-        <div
-          className={
-            !showAdvanced
-              ? "-translate-x-96 transition-translate ease-in-out duration-500"
-              : "translate-x-0 transition-translate ease-in-out duration-500"
-          }
-        >
-          {showAdvanced && (
-            <div className={"mt-5 flex flex-col items-center justify-center"}>
-              <div className="relative">
-                <input
-                  onChange={(e) => setFilmsResearch(e.target.value)}
-                  placeholder="Chercher par nom..."
-                  className="bg-black text-slate-200 rounded py-1 outline-none border border-slate-200 text-sm pl-3"
-                  type="text"
-                />
-                <img
-                  className="w-4 absolute top-1/2 right-4 -translate-y-1/2"
-                  src="loupe-w.svg"
-                  alt=""
-                />
-              </div>
-              <label
-                className="text-white mt-5 font-semibold text-lg"
-                htmlFor="tri"
-              >
-                Trier par:
-              </label>
-              <select
-                onChange={(e) => handleSort(e)}
-                className="block px-4 py-2 rounded mt-3 bg-black text-slate-200 text-center border border-slate-200"
-                name="tri"
-                id="tri"
-              >
-                <option value="popularity.desc">Popularity</option>
-                <option value="primary_release_date.desc">
-                  Primary release
-                </option>
-                <option value="vote_average.desc">Vote</option>
-              </select>
-            </div>
-          )}
-
-          <div className={"flex flex-col mt-5"}>
-            <h2 className="text-white text-center font-semibold text-lg">
-              Chercher par genre:
-            </h2>
-
-            {genres &&
-              genres.map((el) => (
-                <button
-                  className="text-white text-lg py-1 focus:bg-blue-500 rounded"
-                  key={el.id}
-                  value={el.id}
-                  onClick={(e) => handleSelect(e)}
+        {showAdvanced && (
+          <div
+            className={
+              !showAdvanced
+                ? "-translate-x-96 transition-translate ease-in-out duration-500"
+                : "translate-x-0 transition-translate ease-in-out duration-500"
+            }
+          >
+            {showAdvanced && (
+              <div className={"mt-5 flex flex-col items-center justify-center"}>
+                <div className="relative">
+                  <input
+                    onChange={(e) => setFilmsResearch(e.target.value)}
+                    placeholder="Chercher par nom..."
+                    className="bg-black text-slate-200 rounded py-1 outline-none border border-slate-200 text-sm pl-3"
+                    type="text"
+                  />
+                  <img
+                    className="w-4 absolute top-1/2 right-4 -translate-y-1/2"
+                    src="loupe-w.svg"
+                    alt=""
+                  />
+                </div>
+                <label
+                  className="text-white mt-5 font-semibold text-lg"
+                  htmlFor="tri"
                 >
-                  {el.name}
-                </button>
-              ))}
+                  Trier par:
+                </label>
+                <select
+                  onChange={(e) => handleSort(e)}
+                  className="block px-4 py-2 rounded mt-3 bg-black text-slate-200 text-center border border-slate-200"
+                  name="tri"
+                  id="tri"
+                >
+                  <option value="popularity.desc">Popularity</option>
+                  <option value="primary_release_date.desc">
+                    Primary release
+                  </option>
+                  <option value="vote_average.desc">Vote</option>
+                </select>
+              </div>
+            )}
+
+            <div className={"flex flex-col mt-5"}>
+              <h2 className="text-white text-center font-semibold text-lg">
+                Chercher par genre:
+              </h2>
+
+              {genres &&
+                genres.map((el) => (
+                  <button
+                    className="text-white text-lg py-1 focus:bg-blue-500 rounded"
+                    key={el.id}
+                    value={el.id}
+                    onClick={(e) => handleSelect(e)}
+                  >
+                    {el.name}
+                  </button>
+                ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
-      <div className="flex flex-wrap grow justify-start items-center ml-10">
+      <div className="flex flex-wrap justify-start items-center md:ml-10 mt-10 md:mt-0">
         {result &&
           result.map((movie) => (
             <div
@@ -177,7 +177,7 @@ export default function SelectGenre() {
             >
               <img
                 onClick={() => SetModalData(movie)}
-                className="h-72 w-48 object-cover object-center"
+                className="h-24 md:h-72 w-16 md:w-48 object-cover object-center"
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt={`poster of ${movie.original_title}`}
               />

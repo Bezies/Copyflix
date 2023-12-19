@@ -31,21 +31,13 @@ export default function HomePage() {
           </div>
         )}
 
-        <div className="mt-20 px-20 bg-black flex flex-col items-start">
+        <div className="mt-20 px-10 md:px-20 bg-black flex flex-col items-start">
           <PopularFilms />
         </div>
 
-        <div className="mt-20 px-20 flex flex-col items-start">
+        <div className="mt-20 px-10 md:px-20 flex flex-col items-start">
           <TopRatedFilms />
         </div>
-
-        {/* {!filmsDB.database && (
-          <div className="flex items-center justify-center w-full">
-            <p className="text-red-600 text-2xl">
-              Aucun film à afficher, veuillez faire une autre recherche
-            </p>
-          </div>
-        )} */}
       </div>
     </div>
   );

@@ -20,13 +20,16 @@ export default function AddMyListButton({ film }) {
   return (
     <button
       onClick={() => FavList(film)}
-      className="bg-gray-200/20 px-5 mt-8 rounded"
+      className="bg-gray-200/20 px-2 md:px-5 mt-8 rounded mr-3 md:mr-0"
     >
       {Fav ? (
-        <span className="text-green-300 p-4 text-xl block">Ajouté</span>
+        <span className="text-green-300 p-2 md:p-4 text-base md:text-xl block">
+          Ajouté
+        </span>
       ) : (
         <p className="flex items-center">
-          <span className="text-5xl mb-2 font-thin mr-3">+</span>Ma liste
+          <span className="text-base md:text-5xl mb-2 font-thin mr-3">+</span>Ma
+          liste
         </p>
       )}
     </button>

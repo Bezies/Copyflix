@@ -19,15 +19,15 @@ export default function Films() {
             filmsDB.MovieSearch === "" && <RandomFilmsHomePage />}
         </div> */}
 
-        <div className="px-20 mt-20">
+        <div className="px-10 md:px-20 mt-20">
           <SelectGenre />
         </div>
         <div>
-          <div className="mt-20 px-20 bg-black flex flex-col items-start">
+          <div className="mt-20 px-10 md:px-20 bg-black flex flex-col items-start">
             <PopularFilms />
           </div>
 
-          <div className="mt-20 px-20 flex flex-col items-start">
+          <div className="mt-20 px-10 md:px-20 flex flex-col items-start">
             <TopRatedFilms />
           </div>
         </div>

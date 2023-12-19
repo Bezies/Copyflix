@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { addActiveUser } from "../features/profils";
+import Logo from "../Components/Logo";
 
 export default function Login() {
   const users = useSelector((state) => state.users);
@@ -53,11 +54,9 @@ export default function Login() {
 
   return (
     <div className="h-screen bg-[url('/home/background.webp')] bg-cover flex items-center justify-center">
-      <h1 className="fixed top-10 left-10 uppercase font-bold text-red-600 text-6xl">
-        COPYFLIX
-      </h1>
-      <div className="w-1/4 bg-black/60  pt-5">
-        <h2 className="text-white text-2xl font-semibold text-center">
+      <Logo />
+      <div className="w-10/12 md:w-1/2 lg:w-1/4 bg-black/60  pt-5">
+        <h2 className="text-white text-xl md:text-2xl font-semibold text-center">
           S'identifier
         </h2>
         <form

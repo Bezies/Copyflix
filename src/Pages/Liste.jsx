@@ -20,33 +20,37 @@ export default function Liste() {
   return (
     <div className="bg-black">
       <Navbar />
-      <div className="bg-black min-h-screen flex flex-col items-start justify-start px-20 mt-20">
+      <div className="bg-black min-h-screen flex flex-col items-start justify-start px-5 md:px-20 mt-20">
         <div className="w-full">
-          <div className="flex justify-between items-center">
-            <h1 className="text-white pl-3 text-3xl">Mes films favoris</h1>
+          <div className="flex justify-between items-center md:items-center">
+            <h1 className="text-white pl-3 text-xl md:text-3xl">
+              Mes films favoris
+            </h1>
             {edit ? (
               <button
                 onClick={() => setEdit(!edit)}
-                className="flex text-white items-center"
+                className="flex text-white items-center text-xs md:text-base "
               >
-                <span className="bg-green-500 flex items-center justify-center px-2 py-2 mr-3 rounded">
-                  <img src="check.svg" alt="" />
+                <span className="bg-green-500 flex items-center justify-center px-1 md:px-2 py-1 md:py-2 mr-1 md:mr-3 rounded">
+                  <img className="w-2 md:w-4" src="check.svg" alt="" />
                 </span>
                 Valider ma liste
               </button>
             ) : (
               <button
                 onClick={() => setEdit(!edit)}
-                className="flex text-white"
+                className="flex items-center text-white text-xs md:text-base"
               >
-                <img className="w-6 mr-3" src="pen.svg" alt="" /> Editer ma
-                liste
+                <img className="w-3 md:w-6 mr-3" src="pen.svg" alt="" /> Editer
+                ma liste
               </button>
             )}
           </div>
           <div className="flex mt-5">
             {MyList.length === 0 && (
-              <p className="text-white text-xl pl-3">Votre liste est vide...</p>
+              <p className="text-white text-base md:text-xl pl-3">
+                Votre liste est vide...
+              </p>
             )}
 
             {MyList.length > 0 &&

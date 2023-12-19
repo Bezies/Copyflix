@@ -23,11 +23,11 @@ export default function Serie() {
         <RandomSerieHomePage />
       )}
 
-      <div className="mt-20 px-20 bg-black flex flex-col items-start">
+      <div className="mt-20 px-10 md:px-20 bg-black flex flex-col items-start">
         <PopularSeries />
       </div>
 
-      <div className="mt-20 px-20 bg-black flex flex-col items-start">
+      <div className="mt-20 px-10 md:px-20 flex flex-col items-start">
         <TopRatedSeries />
       </div>
     </div>

@@ -27,7 +27,9 @@ export default function TopRatedFilms() {
 
   return (
     <>
-      <h2 className="text-white pl-3 text-3xl mb-10 text-center">Top rated</h2>
+      <h2 className="text-white pl-3 text-xl md:text-3xl mb-5 md:mb-10 text-center">
+        Top rated
+      </h2>
       <div className="flex flex-wrap justify-start">
         {filmsDB.topRanked &&
           filmsDB.topRanked.map((movie) => (
@@ -38,7 +40,7 @@ export default function TopRatedFilms() {
             >
               <img
                 onClick={() => SetModalData(movie)}
-                className="h-72 w-48 object-cover object-center"
+                className="h-24 md:h-72 w-16 md:w-48 object-cover object-center"
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt={`affiche ${movie.original_title}`}
               />

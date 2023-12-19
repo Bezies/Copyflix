@@ -28,7 +28,9 @@ export default function PopularFilms() {
 
   return (
     <>
-      <h2 className="text-white pl-3 text-3xl mb-10">Popular films</h2>
+      <h2 className="text-white pl-3 text-xl md:text-3xl mb-5 md:mb-10">
+        Popular films
+      </h2>
       <div className="flex flex-wrap grow justify-start">
         {filmsDB.popular &&
           filmsDB.popular.map((movie) => (
@@ -39,7 +41,7 @@ export default function PopularFilms() {
             >
               <img
                 onClick={() => SetModalData(movie)}
-                className="h-72 w-48 object-cover object-center"
+                className="h-24 md:h-72 w-16 md:w-48 object-cover object-center"
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt={`poster of ${movie.original_title}`}
               />

@@ -30,7 +30,6 @@ export const filmsDB = createSlice({
       state.page = action.payload + 1;
     },
     AddInMyList: (state, action) => {
-      console.log(action.payload);
       if (
         axios
           .get(
@@ -49,12 +48,6 @@ export const filmsDB = createSlice({
             }
           })
       );
-    },
-    RemoveFavList: (state, action) => {
-      const indexOfFav = state.MyList.findIndex(
-        (el) => el.id === action.payload
-      );
-      state.MyList.splice(indexOfFav, 1);
     },
   },
 });
